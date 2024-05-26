@@ -4,7 +4,7 @@
   "description": "Tutorial de node.js dictado por miduDev",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch 1.http.js",
+    "dev": "node --watch 2.routing.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
