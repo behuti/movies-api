@@ -23,9 +23,7 @@
     "url": "https://github.com/behuti/tutorial-node-midudev/issues"
   },
   "homepage": "https://github.com/behuti/tutorial-node-midudev#readme",
-  "dependencies": {
-    "picocolors": "1.0.1"
-  },
+  "dependencies": {},
   "devDependencies": {
     "eslint": "^8.57.0",
     "standard": "^17.1.0"
