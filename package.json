@@ -4,7 +4,9 @@
   "description": "Tutorial de node.js dictado por miduDev",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch 2.routing.js",
+    "dev:1": "node --watch 1.http.js",
+    "dev:2": "node --watch 2.routing.js",
+    "dev:3": "node --watch 3.express.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -24,6 +26,9 @@
     "url": "https://github.com/behuti/tutorial-node-midudev/issues"
   },
   "homepage": "https://github.com/behuti/tutorial-node-midudev#readme",
+  "dependencies": {
+    "express": "4.19.2"
+  },
   "devDependencies": {
     "eslint": "^8.57.0",
     "nodemon": "^3.1.1",
