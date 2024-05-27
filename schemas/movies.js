@@ -37,8 +37,12 @@ const movieSchema = z.object({
   rate: z.number().min(0).max(10).default(5)
 })
 
-function validateMovie(movie) {
-  return movieSchema.safeParse(movie)
+function validateMovie(shape) {
+  return movieSchema.safeParse(shape)
 }
 
-module.exports = { validateMovie }
+function validatePartialMovie(shape) {
+  return movieSchema.partial().safeParse(shape)
+}
+
+module.exports = { validateMovie, validatePartialMovie }

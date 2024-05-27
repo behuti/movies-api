@@ -1,7 +1,7 @@
 const express = require('express')
 const movies = require('./movies.json')
 const crypto = require('crypto')
-const { validateMovie } = require('./schemas/movies')
+const { validateMovie, validatePartialMovie } = require('./schemas/movies')
 
 const app = express()
 
@@ -33,7 +33,7 @@ app.post('/movies', (req, res) => {
   // Validación
   const result = validateMovie(req.body)
 
-  if (result.error) {
+  if (!result.success) {
     return res.status(400).json({ error: JSON.parse(result.error.message) })
   }
 
@@ -45,6 +45,28 @@ app.post('/movies', (req, res) => {
   movies.push(newMovie)
 
   res.status(201).json(newMovie) // Actualizar la caché del cliente
+})
+
+app.patch('/movies/:id', (req, res) => {
+  // Validación
+  const result = validatePartialMovie(req.body)
+
+  if (!result.success) {
+    return res.status(400).json({ error: JSON.parse(result.error.message) })
+  }
+
+  const { id } = req.params
+  const movieIndex = movies.findIndex((movie) => movie.id === id)
+
+  if (!movieIndex === -1) {
+    return res.status(404).json({ error: 'Movie not found' })
+  }
+
+  const updateMovie = { ...movies[movieIndex], ...result.data }
+
+  movies[movieIndex] = updateMovie
+
+  return res.json(updateMovie)
 })
 
 const PORT = process.env.PORT || 1234
