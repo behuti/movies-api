@@ -8,14 +8,28 @@ const app = express()
 
 app.disable('x-powered-by')
 app.use(express.json())
-app.use(cors())
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      const ACCEPTED_ORIGINS = ['http://localhost:8080']
+      if (ACCEPTED_ORIGINS.includes(origin)) {
+        return callback(null, true)
+      }
+
+      if (!origin) {
+        return callback(null, true)
+      }
+
+      return callback(new Error('Not allowed by CORS'))
+    }
+  })
+)
 
 // Métodos "normales": GET/POST/HEAD
 // Metodos de formulario: PUT/PATCH/DELETE -> CORS PRE-FLIGHT
 // OPTIONS:
 
 // Origins
-const ACCEPTED_ORIGINS = ['http://localhost:8080']
 
 // Todos los recursos que sean MOVIES se identifican con /movies
 app.get('/movies', (req, res) => {
