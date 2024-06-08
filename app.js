@@ -1,13 +1,17 @@
-const express = require('express')
+import express, { json } from 'express'
+import { randomUUID } from 'crypto'
+import cors from 'cors'
+import { validateMovie, validatePartialMovie } from './schemas/movies.js'
+
+// How to read a JSON file in ESmodules
+import {createRequire} from 'node:module';
+const require = createRequire(import.meta.url);
 const movies = require('./movies.json')
-const crypto = require('crypto')
-const cors = require('cors')
-const { validateMovie, validatePartialMovie } = require('./schemas/movies')
 
 const app = express()
 
 app.disable('x-powered-by')
-app.use(express.json())
+app.use(json())
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -61,7 +65,7 @@ app.post('/movies', (req, res) => {
   }
 
   const newMovie = {
-    id: crypto.randomUUID(), // uuidv4
+    id: randomUUID(), // uuidv4
     ...result.data
   }
   // Esto no es REST porque estamos guardando el estado de la aplicación en memoria
