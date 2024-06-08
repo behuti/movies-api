@@ -1,16 +1,17 @@
 {
-  "name": "node-tutorial",
+  "name": "movies-api",
   "version": "1.0.0",
-  "description": "Tutorial de node.js dictado por miduDev",
-  "main": "index.js",
+  "description": "Movies api built in node.js and express",
+  "main": "app.js",
   "scripts": {
     "dev": "node --watch app.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "web": "http-server ./web"
+    "web": "http-server ./web",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/behuti/tutorial-node-midudev.git"
+    "url": "git+https://github.com/behuti/movies-api"
   },
   "keywords": [
     "nodejs",
@@ -22,9 +23,9 @@
   "author": "Eduardo Henao - behuti",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/behuti/tutorial-node-midudev/issues"
+    "url": "https://github.com/behuti/movies-api/issues"
   },
-  "homepage": "https://github.com/behuti/tutorial-node-midudev#readme",
+  "homepage": "https://github.com/behuti/movies-api#readme",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "4.19.2",
