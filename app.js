@@ -1,26 +1,24 @@
 const express = require('express')
 const movies = require('./movies.json')
 const crypto = require('crypto')
+const cors = require('cors')
 const { validateMovie, validatePartialMovie } = require('./schemas/movies')
 
 const app = express()
 
 app.disable('x-powered-by')
 app.use(express.json())
+app.use(cors())
 
 // Métodos "normales": GET/POST/HEAD
 // Metodos de formulario: PUT/PATCH/DELETE -> CORS PRE-FLIGHT
-// OPTIONS: 
+// OPTIONS:
 
 // Origins
 const ACCEPTED_ORIGINS = ['http://localhost:8080']
 
 // Todos los recursos que sean MOVIES se identifican con /movies
 app.get('/movies', (req, res) => {
-  const origin = req.headers.origin
-  if (!ACCEPTED_ORIGINS.includes(origin) || !origin) {
-    res.header('Access-Control-Allow-Origin', origin)
-  }
   const { genre } = req.query
   if (genre) {
     const filteredMovies = movies.filter((movie) =>
@@ -59,10 +57,6 @@ app.post('/movies', (req, res) => {
 })
 
 app.delete('/movies/:id', (req, res) => {
-  const origin = req.headers.origin
-  if (!ACCEPTED_ORIGINS.includes(origin) || !origin) {
-    res.header('Access-Control-Allow-Origin', origin)
-  }
   const { id } = req.params
   const movieIndex = movies.findIndex((movie) => movie.id === id)
 
@@ -93,15 +87,6 @@ app.patch('/movies/:id', (req, res) => {
   movies[movieIndex] = updateMovie
 
   return res.json(updateMovie)
-})
-
-app.options('/movies/:id', (req, res) => {
-  const origin = req.header('origin');
-  if (!ACCEPTED_ORIGINS.includes(origin) || !origin) {
-    res.header('Access-Control-Allow-Origin', origin)
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, PATCH, DELETE')
-  }
-  res.send(200)
 })
 
 const PORT = process.env.PORT || 1234
