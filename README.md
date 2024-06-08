@@ -1,21 +1,16 @@
-# Status codes
+# Movies API
 
-## 100 - 199
+This is a Node.JS/Express API to get, post, patch and deletes movies
 
-Mensajes informativos
+## Features
+This API uses Express to create the different endpoints.
 
-## 200 - 299
+## Scripts
 
-Respuestas satisfactorias
+- Run `npm run dev` to start the Backend server
+- Run `npm run web` to start the HTTP-server
 
-## 300 - 399
-
-Redirecciones
-
-## 400 - 499
-
-Errores del lado del cliente
-
-## 500 - 599
-
-Errores del servidor
+## Dependencies
+- (cors)[https://github.com/expressjs/cors#readme]
+- (express)[http://expressjs.com/]
+- (http-server)[https://github.com/http-party/http-server#readme]
