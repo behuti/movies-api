@@ -4,10 +4,9 @@
   "description": "Tutorial de node.js dictado por miduDev",
   "main": "index.js",
   "scripts": {
-    "dev:1": "node --watch 1.http.js",
-    "dev:2": "node --watch 2.routing.js",
-    "dev:3": "node --watch 3.express.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node --watch app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "web": "http-server ./web"
   },
   "repository": {
     "type": "git",
@@ -27,10 +26,13 @@
   },
   "homepage": "https://github.com/behuti/tutorial-node-midudev#readme",
   "dependencies": {
-    "express": "4.19.2"
+    "cors": "^2.8.5",
+    "express": "4.19.2",
+    "zod": "3.23.8"
   },
   "devDependencies": {
     "eslint": "^8.57.0",
+    "http-server": "^14.1.1",
     "standard": "^17.1.0"
   },
   "eslintConfig": {
