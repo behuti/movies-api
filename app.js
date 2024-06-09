@@ -1,9 +1,8 @@
-import 'babel-polyfill'
+import 'dotenv/config'
 import express, { json } from 'express'
 import { moviesRouter } from './routes/movies.js'
 import { corsMiddleware } from './middlewares/cors.js'
-import dotenv from 'dotenv'
-dotenv.config()
+
 const app = express()
 
 app.disable('x-powered-by') // Disable the X-Powered-By credits
