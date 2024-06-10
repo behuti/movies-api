@@ -2,8 +2,6 @@ import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb'
 const dbUser = process.env.MONGODB_USER
 const dbPassword = process.env.MONGODB_PASS
 
-console.log("PROCESS VARIABLES: ", dbUser, dbPassword)
-
 const uri = 'mongodb+srv://' + dbUser + ':' + dbPassword + '@cluster0.h6e21mw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -20,12 +18,15 @@ async function connect() {
     await client.connect()
     const database = client.db('database')
     return database.collection('movies')
-  } catch (error) {
-    console.error('Error connecting to the database')
-    console.error(error)
-    await client.close()
+    const cursor = ratings.find();
+
+    await cursor.forEach(doc => console.dir(doc));
+  } finally {
+    await client.close();
   }
 }
+
+connect().catch(console.dir);
 
 export class MovieModel {
   static async getAll({ genre }) {
