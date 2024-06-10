@@ -1,6 +1,6 @@
 import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb'
-const dbUser = process.env.DB_USER
-const dbPassword = process.env.DB_PASSWORD
+const dbUser = process.env.MONGODB_USER
+const dbPassword = process.env.MONGODB_PASS
 
 console.log("PROCESS VARIABLES: ", process.env)
 
