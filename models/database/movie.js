@@ -2,7 +2,7 @@ import { MongoClient, ObjectId, ServerApiVersion } from 'mongodb'
 const dbUser = process.env.MONGODB_USER
 const dbPassword = process.env.MONGODB_PASS
 
-console.log("PROCESS VARIABLES: ", process.env)
+console.log("PROCESS VARIABLES: ", dbUser, dbPassword)
 
 const uri = 'mongodb+srv://' + dbUser + ':' + dbPassword + '@cluster0.h6e21mw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 
