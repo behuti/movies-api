@@ -18,15 +18,12 @@ async function connect() {
     await client.connect()
     const database = client.db('database')
     return database.collection('movies')
-    const cursor = ratings.find();
-
-    await cursor.forEach(doc => console.dir(doc));
-  } finally {
-    await client.close();
+  } catch (error) {
+    console.error('Error connecting to the database')
+    console.error(error)
+    await client.close()
   }
 }
-
-connect().catch(console.dir);
 
 export class MovieModel {
   static async getAll({ genre }) {
