@@ -1,6 +1,6 @@
 import cors from 'cors'
 
-const ACCEPTED_ORIGINS = ['http://localhost:8080']
+const ACCEPTED_ORIGINS = ['http://localhost:8080', 'https://movies-api.zeabur.app']
 export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) =>
   cors({
     origin: (origin, callback) => {
