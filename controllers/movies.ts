@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import { MovieModel } from '../models/database/movie.js'
+import { MovieModel } from '../models/local-file-system/movie.js'
 import { validateMovie, validatePartialMovie } from '../schemas/movies.js'
 
 export class MovieController {
