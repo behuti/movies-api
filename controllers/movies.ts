@@ -1,21 +1,22 @@
+import { Request, Response } from 'express'
 import { MovieModel } from '../models/database/movie.js'
 import { validateMovie, validatePartialMovie } from '../schemas/movies.js'
 
 export class MovieController {
-  static getAll = async (req, res) => {
+  static getAll = async (req:Request, res:Response) => {
     const { genre } = req.query
     const movies = await MovieModel.getAll({ genre })
     res.json(movies)
   }
 
-  static getById = async (req, res) => {
+  static getById = async (req:Request, res:Response) => {
     const { id } = req.params
     const movie = await MovieModel.getById({ id })
     if (movie) return res.json(movie)
     res.status(404).json({ error: 'Movie not found' })
   }
 
-  static create = async (req, res) => {
+  static create = async (req:Request, res:Response) => {
     // Validation
     const result = validateMovie(req.body)
 
@@ -28,7 +29,7 @@ export class MovieController {
     res.status(201).json(newMovie) // Update the cache status
   }
 
-  static delete = async (req, res) => {
+  static delete = async (req:Request, res:Response) => {
     const { id } = req.params
 
     const result = await MovieModel.delete({ id })
@@ -40,7 +41,7 @@ export class MovieController {
     return res.json({ message: 'Movie deleted' })
   }
 
-  static update = async (req, res) => {
+  static update = async (req:Request, res:Response) => {
     // Validation
     const result = validatePartialMovie(req.body)
 
