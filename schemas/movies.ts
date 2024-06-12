@@ -1,4 +1,5 @@
 import z from 'zod'
+import { Movie } from './types.js'
 
 const movieSchema = z.object({
   title: z.string({
@@ -37,10 +38,10 @@ const movieSchema = z.object({
   rate: z.number().min(0).max(10).default(5)
 })
 
-export function validateMovie(shape) {
+export function validateMovie(shape: Movie) {
   return movieSchema.safeParse(shape)
 }
 
-export function validatePartialMovie(shape) {
+export function validatePartialMovie(shape: Movie) {
   return movieSchema.partial().safeParse(shape)
 }
