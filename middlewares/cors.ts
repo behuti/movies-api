@@ -4,7 +4,7 @@ const ACCEPTED_ORIGINS = ['http://localhost:8080', 'https://movies-api.zeabur.ap
 export const corsMiddleware = ({ acceptedOrigins = ACCEPTED_ORIGINS } = {}) =>
   cors({
     origin: (origin, callback) => {
-      if (ACCEPTED_ORIGINS.includes(origin)) {
+      if (origin !== undefined && ACCEPTED_ORIGINS.includes(origin)) {
         return callback(null, true)
       }
 
